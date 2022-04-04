@@ -15,9 +15,29 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
+  <header class="purple-background">
+    <div class="container header row align-center">
+      <p class="text-white no-margin">Code Journal</p>
+    </div>
   </header>
   <main>
+    <div class="container">
+      <h1>New Entry</h1>
+      <div data-view="entry-form row">
+        <img class="column-half image round-border" src="images/placeholder-image-square.jpg">
+        <div class="column-half">
+          <div>
+            <label class="block-display" for="title">Title</label>
+            <input class="text-border round-border block-display" type="text" id="title" name="title">
+          </div>
+          <label class="block-display" for="photo-url">Photo URL</label>
+          <input class="text-border round-border block-display" type="text" id="photo-url" name="photo-url">
+        </div>
+        <label class="column-full" for="notes">Notes</label>
+        <textarea class="column-full text-border round-border" id="notes" name="notes"></textarea>
+        <button class="text-white purple-background round-border button-border">SAVE</button>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
