@@ -10,14 +10,47 @@
     crossorigin="anonymous"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;700&family=Courier+Prime:wght@400;700&family=Heebo:wght@500&family=IBM+Plex+Sans:wght@300&family=Montserrat:wght@400;500;700&family=Proza+Libre:wght@400;700&family=Quicksand:wght@400;600;700&family=Sree+Krushnadevaraya&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-  <header>
+<body class="grey-background">
+  <header class="purple-background">
+    <div class="container header row align-center">
+      <p class="text-white no-margin column-full header-text">Code Journal</p>
+    </div>
   </header>
   <main>
+    <div class="container">
+      <div data-view="entry-form">
+        <form class="row">
+          <h1 class="column-full title-text">New Entry</h1>
+          <div class="column-half image-height padding-twenty">
+            <img class="image round-border" src="images/placeholder-image-square.jpg">
+          </div>
+          <div class="column-half">
+            <div class="padding-twenty">
+              <label class="block-display padding-ten" for="title">Title</label>
+              <input class="text-border round-border block-display text-box" required type="text" id="title" name="title">
+            </div>
+            <div class="padding-twenty">
+              <label class="block-display padding-ten" for="photo-url">Photo URL</label>
+              <input class="text-border round-border block-display text-box" required type="text" id="photo" name="photo">
+            </div>
+          </div>
+          <div class="column-full padding-twenty">
+            <label for="notes" class="padding-ten block-display">Notes</label>
+            <textarea class="text-border round-border block-display textarea-box" required id="notes" name="notes"></textarea>
+          </div>
+          <div class="column-full position-relative page-bottom">
+            <button type="submit" class="text-white purple-background round-border button-border new-entry-button">SAVE</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

@@ -1,0 +1,94 @@
+* {
+  font-family: "Proza Libre", serif;
+}
+
+textarea,
+input {
+  outline-color: #562b81;
+  padding: 10px;
+}
+
+.purple-background {
+  background-color: #562b81;
+}
+
+.grey-background {
+  background-color: #f0f0f0;
+}
+
+.text-white {
+  color: white;
+}
+
+.image {
+  object-fit: cover;
+  width: 100%;
+}
+
+.round-border {
+  border-radius: 3px;
+}
+
+.text-border {
+  border: 1px solid #b6b6b6;
+}
+
+.width-full {
+  width: 100%;
+}
+
+.button-border {
+  border: none;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.header {
+  height: 50px;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.block-display {
+  display: block;
+  width: 100%;
+}
+
+.padding-ten {
+  padding-bottom: 10px;
+}
+
+.padding-twenty {
+  padding-bottom: 20px;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.textarea-box {
+  height: 150px;
+  resize: none;
+}
+
+.text-box {
+  height: 40px;
+}
+
+.new-entry-button {
+  position: absolute;
+  right: 0;
+  padding: 6px 15px;
+}
+
+.page-bottom {
+  margin-bottom: 50px;
+}
+
+.header-text {
+  font-size: 20px;
+}
