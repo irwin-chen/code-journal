@@ -92,3 +92,9 @@ input {
 .header-text {
   font-size: 20px;
 }
+
+.header-entries {
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  margin: 0 15px;
+}
