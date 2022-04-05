@@ -25,31 +25,32 @@
   </header>
   <main>
     <div class="container">
-      <div data-view="entry-form" class="row">
-        <h1 class="column-full title-text">New Entry</h1>
-        <div class="column-half image-height padding-twenty">
-          <img class="image round-border" src="images/placeholder-image-square.jpg">
-        </div>
-        <div class="column-half">
-          <div class="padding-twenty">
-            <label class="block-display padding-ten" for="title">Title</label>
-            <input class="text-border round-border block-display text-box" required type="text" id="title" name="title">
+      <div data-view="entry-form">
+        <form class="row">
+          <h1 class="column-full title-text">New Entry</h1>
+          <div class="column-half image-height padding-twenty">
+            <img class="image round-border" src="images/placeholder-image-square.jpg">
           </div>
-          <div class="padding-twenty">
-            <label class="block-display padding-ten" for="photo-url">Photo URL</label>
-            <input class="text-border round-border block-display text-box" required type="text" id="photo-url" name="photo-url">
+          <div class="column-half">
+            <div class="padding-twenty">
+              <label class="block-display padding-ten" for="title">Title</label>
+              <input class="text-border round-border block-display text-box" required type="text" id="title" name="title">
+            </div>
+            <div class="padding-twenty">
+              <label class="block-display padding-ten" for="photo-url">Photo URL</label>
+              <input class="text-border round-border block-display text-box" required type="text" id="photo" name="photo">
+            </div>
           </div>
-        </div>
-        <div class="column-full padding-twenty">
-          <label for="notes" class="padding-ten block-display">Notes</label>
-          <textarea class="text-border round-border block-display textarea-box" required id="notes" name="notes"></textarea>
-        </div>
-        <div class="column-full position-relative page-bottom">
-          <button class="text-white purple-background round-border button-border new-entry-button">SAVE</button>
-        </div>
+          <div class="column-full padding-twenty">
+            <label for="notes" class="padding-ten block-display">Notes</label>
+            <textarea class="text-border round-border block-display textarea-box" required id="notes" name="notes"></textarea>
+          </div>
+          <div class="column-full position-relative page-bottom">
+            <button type="submit" class="text-white purple-background round-border button-border new-entry-button">SAVE</button>
+          </div>
+        </form>
       </div>
     </div>
-
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
