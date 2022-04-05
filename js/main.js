@@ -15,7 +15,7 @@ $photo.addEventListener('input', function () {
   }
 });
 
-$submit.addEventListener('click', function (event) {
+$submit.addEventListener('click', function () {
   event.preventDefault();
   var dataEntry = {
     title: $title.value,
@@ -27,4 +27,9 @@ $submit.addEventListener('click', function (event) {
   data.entries.push(dataEntry);
   $image.src = 'images/placeholder-image-square.jpg';
   $form.reset();
+});
+
+window.addEventListener('beforeunload', function () {
+  var dataJSON = JSON.stringify(data);
+  localStorage.setItem('savedData', dataJSON);
 });

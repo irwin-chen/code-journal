@@ -72,6 +72,7 @@ input {
 
 .textarea-box {
   height: 150px;
+  resize: none;
 }
 
 .text-box {
