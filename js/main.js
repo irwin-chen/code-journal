@@ -8,14 +8,14 @@ var $title = document.querySelector('#title');
 var $notes = document.querySelector('#notes');
 var $form = document.querySelector('form');
 
-$photo.addEventListener('input', function () {
+$photo.addEventListener('input', function (event) {
   $image.src = $photo.value;
   if ($photo.value === '') {
     $image.src = 'images/placeholder-image-square.jpg';
   }
 });
 
-$submit.addEventListener('click', function () {
+$submit.addEventListener('click', function (event) {
   event.preventDefault();
   var dataEntry = {
     title: $title.value,
@@ -27,9 +27,4 @@ $submit.addEventListener('click', function () {
   data.entries.push(dataEntry);
   $image.src = 'images/placeholder-image-square.jpg';
   $form.reset();
-});
-
-window.addEventListener('beforeunload', function () {
-  var dataJSON = JSON.stringify(data);
-  localStorage.setItem('savedData', dataJSON);
 });
