@@ -23,17 +23,16 @@
 <body class="grey-background">
   <header class="purple-background">
     <div class="container header row align-center">
-      <p class="text-white no-margin header-text">Code Journal</p>
-      <p class="text-white no-margin header-entries">Entries</p>
+      <p class="text-white no-margin header-text column-full">Code Journal</p>
     </div>
   </header>
   <main>
     <div class="container">
-      <div data-view="entry-form">
+      <div data-view="entry-form" class="hidden"> <!-- hidden -->
         <form class="row">
           <h1 class="column-full title-text">New Entry</h1>
-          <div class="column-half image-height padding-twenty">
-            <img class="image round-border" src="images/placeholder-image-square.jpg">
+          <div class="column-half padding-twenty">
+            <img class="image round-border width-full" src="images/placeholder-image-square.jpg">
           </div>
           <div class="column-half">
             <div class="padding-twenty">
@@ -55,7 +54,41 @@
         </form>
       </div>
       <div data-view="entries">
-
+        <div>
+          <h1 class="column-full">Entries</h1>
+          <ul class="row list">
+            <li class="column-full padding-twenty">
+              <div class="row">
+                <img class="image column-half"
+                    src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80"
+                    alt="image1">
+                <div class="column-half">
+                  <h2 class="no-margin padding-ten">Book</h2>
+                  <p class="no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mauris sem, venenatis eu tempus sit amet,
+                    scelerisque eu
+                    purus. Morbi ut fringilla tellus. Ut a est mauris. Proin venenatis mi vitae lectus consectetur luctus. Nam
+                    quis pharetra
+                    ligula. Sed tempor varius odio, et tristique purus scelerisque at. Suspendisse tempor suscipit enim, eget
+                    mattis mi
+                    condimentum et. Morbi eleifend fringilla nisl et pharetra. Phasellus eget neque aliquet, accumsan dui ut,
+                    facilisis sem.</p>
+                </div>
+              </div>
+            </li>
+            <li class="column-full padding-twenty">
+              <div class="row">
+                <img class="image column-half" src="https://i.imgflip.com/449ksb.png">
+                <div class="column-half">
+                  <h2 class="no-margin padding-ten">Elmo</h2>
+                  <p class="no-margin padding">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mauris sem, venenatis eu tempus sit amet, scelerisque eu
+                  purus. Morbi ut fringilla tellus. Ut a est mauris. Proin venenatis mi vitae lectus consectetur luctus. Nam quis pharetra
+                  ligula. Sed tempor varius odio, et tristique purus scelerisque at. Suspendisse tempor suscipit enim, eget mattis mi
+                  condimentum et. Morbi eleifend fringilla nisl et pharetra. Phasellus eget neque aliquet, accumsan dui ut, facilisis sem.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </main>
