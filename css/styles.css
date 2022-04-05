@@ -1,5 +1,11 @@
 * {
-  font-family: "Proza Libre", sans-serif;
+  font-family: "Proza Libre", serif;
+}
+
+textarea,
+input {
+  outline-color: #562b81;
+  padding: 10px;
 }
 
 .purple-background {
@@ -16,8 +22,7 @@
 
 .image {
   object-fit: cover;
-  max-height: 300px;
-  padding: 0;
+  width: 100%;
 }
 
 .round-border {
@@ -51,4 +56,38 @@
 .block-display {
   display: block;
   width: 100%;
+}
+
+.padding-ten {
+  padding-bottom: 10px;
+}
+
+.padding-twenty {
+  padding-bottom: 20px;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.textarea-box {
+  height: 150px;
+}
+
+.text-box {
+  height: 40px;
+}
+
+.new-entry-button {
+  position: absolute;
+  right: 0;
+  padding: 6px 15px;
+}
+
+.page-bottom {
+  margin-bottom: 50px;
+}
+
+.header-text {
+  font-size: 20px;
 }
