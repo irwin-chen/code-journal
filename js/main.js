@@ -33,6 +33,8 @@ $submit.addEventListener('click', function (event) {
 
   $imageElement.src = 'images/placeholder-image-square.jpg';
   $form.reset();
+  $entriesListView.className = 'view';
+  $newEntriesView.className = 'view hidden';
 });
 
 $divContainer.addEventListener('click', viewSwap);
@@ -47,10 +49,6 @@ function viewSwap(event) {
     }
   }
 }
-
-window.addEventListener('DOMContentLoaded', function () {
-  $newEntriesView.className = 'view hidden';
-});
 
 function renderEntry(dataEntry) {
   var $listItem = document.createElement('li');

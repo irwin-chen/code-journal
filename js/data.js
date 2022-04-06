@@ -15,7 +15,7 @@ window.addEventListener('beforeunload', function (event) {
 window.addEventListener('DOMContentLoaded', function (event) {
   var $list = document.querySelector('.list');
   var $storedEntries = localStorage.getItem('local-storage');
-  if (JSON.parse($storedEntries).entries.length !== 0) {
+  if (JSON.parse($storedEntries).nextEntryId === 1) {
     data = JSON.parse($storedEntries);
     for (var dataIndex = 0; dataIndex < data.entries.length; dataIndex++) {
       var entryTree = renderEntry(data.entries[dataIndex]);
