@@ -99,8 +99,9 @@ input {
   margin: 0 15px;
 }
 
-.notes-font {
+.notes-text {
   font-family: "Open Sans", sans-serif;
+  line-height: 1.5;
 }
 
 .list {
