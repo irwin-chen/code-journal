@@ -13,7 +13,7 @@ window.addEventListener('beforeunload', function (event) {
 
 window.addEventListener('DOMContentLoaded', function (event) {
   var $storedEntries = localStorage.getItem('local-storage');
-  if (JSON.parse($storedEntries) !== null) {
+  if ($storedEntries !== null) {
     data = JSON.parse($storedEntries);
   }
 });
