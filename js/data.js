@@ -9,5 +9,46 @@ var data = {
 
 window.addEventListener('beforeunload', function (event) {
   var dataJSON = JSON.stringify(data);
-  localStorage.setItem('savedData', dataJSON);
+  localStorage.setItem('local-storage', dataJSON);
 });
+
+window.addEventListener('DOMContentLoaded', function (event) {
+  var $list = document.querySelector('.list');
+  var $storedEntries = localStorage.getItem('local-storage');
+  if (JSON.parse($storedEntries).entries.length !== 0) {
+    data = JSON.parse($storedEntries);
+    for (var dataIndex = 0; dataIndex < data.entries.length; dataIndex++) {
+      var entryTree = renderEntry(data.entries[dataIndex]);
+      $list.append(entryTree);
+    }
+  }
+});
+
+function renderEntry(dataEntry) {
+  var $listItem = document.createElement('li');
+  $listItem.className = 'column-full padding-twenty';
+
+  var $divRow = document.createElement('div');
+  $divRow.className = 'row';
+  $listItem.appendChild($divRow);
+
+  var $newImage = document.createElement('img');
+  $newImage.className = 'image column-half padding-ten';
+  $newImage.src = dataEntry.photo;
+
+  var $textContainer = document.createElement('div');
+  $textContainer.className = 'column-half';
+
+  $divRow.append($newImage, $textContainer);
+
+  var $textTitle = document.createElement('h2');
+  $textTitle.className = 'no-margin padding-ten';
+  $textTitle.textContent = dataEntry.title;
+
+  var $textNotes = document.createElement('p');
+  $textNotes.className = 'no-margin notes-text';
+  $textNotes.textContent = dataEntry.notes;
+
+  $textContainer.append($textTitle, $textNotes);
+  return $listItem;
+}
