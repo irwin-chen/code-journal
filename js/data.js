@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
     data = JSON.parse($storedEntries);
     for (var dataIndex = 0; dataIndex < data.entries.length; dataIndex++) {
       var entryTree = renderEntry(data.entries[dataIndex]);
-      $list.append(entryTree);
+      $list.prepend(entryTree);
     }
   }
 });

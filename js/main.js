@@ -29,7 +29,7 @@ $submit.addEventListener('click', function (event) {
   };
   data.nextEntryId++;
   data.entries.push(dataEntry);
-  $list.append(renderEntry(dataEntry));
+  $list.prepend(renderEntry(dataEntry));
 
   $imageElement.src = 'images/placeholder-image-square.jpg';
   $form.reset();
