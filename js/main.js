@@ -11,6 +11,7 @@ var $divContainer = document.querySelector('body');
 var $newEntriesView = document.querySelectorAll('.view')[0];
 var $entriesListView = document.querySelectorAll('.view')[1];
 var $list = document.querySelector('.list');
+var $noEntriesText = document.querySelector('.no-entries');
 
 $photo.addEventListener('input', function (event) {
   $imageElement.src = $photo.value;
@@ -33,8 +34,11 @@ $submit.addEventListener('click', function (event) {
 
   $imageElement.src = 'images/placeholder-image-square.jpg';
   $form.reset();
+
   $entriesListView.className = 'view';
   $newEntriesView.className = 'view hidden';
+
+  checkEmptyList();
 });
 
 $divContainer.addEventListener('click', viewSwap);
@@ -79,4 +83,20 @@ function renderEntry(dataEntry) {
   $textContainer.appendChild($textTitle);
   $textContainer.appendChild($textNotes);
   return $listItem;
+}
+
+window.addEventListener('DOMContentLoaded', function (event) {
+  for (var dataIndex = 0; dataIndex < data.entries.length; dataIndex++) {
+    var entryTree = renderEntry(data.entries[dataIndex]);
+    $list.prepend(entryTree);
+  }
+  checkEmptyList();
+});
+
+function checkEmptyList(event) {
+  if (data.entries.length === 0) {
+    $noEntriesText.classList.remove('hidden');
+  } else {
+    $noEntriesText.className = 'no-entries hidden';
+  }
 }
