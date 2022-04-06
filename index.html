@@ -19,12 +19,16 @@
 <body class="grey-background">
   <header class="purple-background">
     <div class="container header row align-center">
-      <p class="text-white no-margin header-text column-full">Code Journal</p>
+      <p class="text-white no-margin header-text column-full">Code Journal
+        <a class="header-entries tab">
+          Entries
+        </a>
+      </p>
     </div>
   </header>
   <main>
     <div class="container">
-      <div data-view="entry-form">
+      <div data-view="entry-form" class="view">
         <form class="row">
           <h1 class="column-full title-text">New Entry</h1>
           <div class="column-half padding-twenty">
@@ -45,16 +49,17 @@
             <textarea class="text-border round-border block-display textarea-box" required id="notes" name="notes"></textarea>
           </div>
           <div class="column-full position-relative page-bottom">
-            <button type="submit" class="text-white purple-background round-border button-border new-entry-button">SAVE</button>
+            <button type="submit" class="text-white purple-background round-border button-border button-position submit-button">SAVE</button>
           </div>
         </form>
       </div>
-      <div data-view="entries">
-        <div>
-          <h1 class="column-full">Entries</h1>
-          <ul class="row list">
-          </ul>
+      <div data-view="entries" class="view">
+        <div class="row align-center position-relative">
+          <h1 class="column-half">Entries</h1>
+          <button class="text-white purple-background round-border button-border new-entry-button tab button-position">NEW</button>
         </div>
+        <ul class="row list">
+        </ul>
       </div>
     </div>
   </main>

@@ -79,10 +79,9 @@ input {
   height: 40px;
 }
 
-.new-entry-button {
+.button-position {
   position: absolute;
   right: 0;
-  padding: 6px 15px;
 }
 
 .page-bottom {
@@ -107,4 +106,12 @@ input {
 .list {
   list-style: none;
   padding-inline-start: 0;
+}
+
+.submit-button {
+  padding: 6px 15px;
+}
+
+.new-entry-button {
+  padding: 5px 10px;
 }

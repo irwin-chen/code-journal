@@ -39,7 +39,8 @@ function renderEntry(dataEntry) {
   var $textContainer = document.createElement('div');
   $textContainer.className = 'column-half';
 
-  $divRow.append($newImage, $textContainer);
+  $divRow.appendChild($newImage);
+  $divRow.appendChild($textContainer);
 
   var $textTitle = document.createElement('h2');
   $textTitle.className = 'no-margin padding-ten';
@@ -49,6 +50,7 @@ function renderEntry(dataEntry) {
   $textNotes.className = 'no-margin notes-text';
   $textNotes.textContent = dataEntry.notes;
 
-  $textContainer.append($textTitle, $textNotes);
+  $textContainer.appendChild($textTitle);
+  $textContainer.appendChild($textNotes);
   return $listItem;
 }
