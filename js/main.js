@@ -129,7 +129,7 @@ $list.addEventListener('click', function (event) {
     $entriesListView.className = 'view hidden';
     $newEntriesView.className = 'view';
     for (var listItemIndex = 0; listItemIndex < $entriesNodeList.length; listItemIndex++) {
-      if (event.target.closest('li') === $entriesNodeList[listItemIndex]) {
+      if (event.target.closest('li').isSameNode($entriesNodeList[listItemIndex])) {
         $targetedListItem = event.target.closest('li');
         dataObjectIndex -= listItemIndex;
         data.editing = data.entries[dataObjectIndex];
