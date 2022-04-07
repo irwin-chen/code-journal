@@ -13,6 +13,7 @@ var $entriesListView = document.querySelectorAll('.view')[1];
 var $list = document.querySelector('.list');
 var $noEntriesText = document.querySelector('.no-entries');
 var $entriesNodeList = null;
+var $targetedListItem = null;
 
 $photo.addEventListener('input', function (event) {
   $imageElement.src = $photo.value;
@@ -23,16 +24,24 @@ $photo.addEventListener('input', function (event) {
 
 $submit.addEventListener('click', function (event) {
   event.preventDefault();
+
   var dataEntry = {
     title: $title.value,
     photo: $photo.value,
-    notes: $notes.value,
-    EntryId: data.nextEntryId
+    notes: $notes.value
   };
-  data.nextEntryId++;
-  data.entries.push(dataEntry);
-  $list.prepend(renderEntry(dataEntry));
 
+  if (data.editing !== null) {
+    dataEntry.entryId = data.editing.entryId;
+    data.entries.splice(dataEntry.entryId - 1, 1, dataEntry);
+    $targetedListItem.replaceWith(renderEntry(dataEntry));
+    data.editing = null;
+  } else {
+    dataEntry.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.push(dataEntry);
+    $list.prepend(renderEntry(dataEntry));
+  }
   $imageElement.src = 'images/placeholder-image-square.jpg';
   $form.reset();
 
@@ -66,7 +75,7 @@ function renderEntry(dataEntry) {
   $listItem.appendChild($divRow);
 
   var $newImage = document.createElement('img');
-  $newImage.className = 'image column-half padding-ten';
+  $newImage.className = 'image column-half padding-twenty';
   $newImage.src = dataEntry.photo;
 
   var $textContainer = document.createElement('div');
@@ -116,12 +125,12 @@ function checkEmptyList(event) {
 
 $list.addEventListener('click', function (event) {
   var dataObjectIndex = $entriesNodeList.length - 1;
-  data.editing = null;
   if (event.target.matches('i')) {
     $entriesListView.className = 'view hidden';
     $newEntriesView.className = 'view';
     for (var listItemIndex = 0; listItemIndex < $entriesNodeList.length; listItemIndex++) {
       if (event.target.closest('li') === $entriesNodeList[listItemIndex]) {
+        $targetedListItem = event.target.closest('li');
         dataObjectIndex -= listItemIndex;
         data.editing = data.entries[dataObjectIndex];
       }
