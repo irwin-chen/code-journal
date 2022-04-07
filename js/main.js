@@ -72,6 +72,12 @@ function renderEntry(dataEntry) {
   $divRow.appendChild($newImage);
   $divRow.appendChild($textContainer);
 
+  var $titleAndIcon = document.createElement('div');
+  $titleAndIcon.className = 'row position-relative';
+
+  var $editIcon = document.createElement('i');
+  $editIcon.className = 'fas fa-pen fa-lg edit-icon';
+
   var $textTitle = document.createElement('h2');
   $textTitle.className = 'no-margin padding-ten';
   $textTitle.textContent = dataEntry.title;
@@ -80,7 +86,10 @@ function renderEntry(dataEntry) {
   $textNotes.className = 'no-margin notes-text';
   $textNotes.textContent = dataEntry.notes;
 
-  $textContainer.appendChild($textTitle);
+  $titleAndIcon.appendChild($textTitle);
+  $titleAndIcon.appendChild($editIcon);
+
+  $textContainer.appendChild($titleAndIcon);
   $textContainer.appendChild($textNotes);
   return $listItem;
 }

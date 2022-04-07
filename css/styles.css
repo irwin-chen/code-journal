@@ -119,3 +119,10 @@ input {
 .no-entries {
   text-align: center;
 }
+
+.edit-icon {
+  color: #562b81;
+  margin: 0;
+  position: absolute;
+  right: 0;
+}
