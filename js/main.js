@@ -12,6 +12,7 @@ var $newEntriesView = document.querySelectorAll('.view')[0];
 var $entriesListView = document.querySelectorAll('.view')[1];
 var $list = document.querySelector('.list');
 var $noEntriesText = document.querySelector('.no-entries');
+var $entriesNodeList = null;
 
 $photo.addEventListener('input', function (event) {
   $imageElement.src = $photo.value;
@@ -39,6 +40,7 @@ $submit.addEventListener('click', function (event) {
   $newEntriesView.className = 'view hidden';
 
   checkEmptyList();
+  $entriesNodeList = document.querySelectorAll('li');
 });
 
 $divContainer.addEventListener('click', viewSwap);
@@ -100,6 +102,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
     $list.prepend(entryTree);
   }
   checkEmptyList();
+  $entriesNodeList = document.querySelectorAll('li');
 });
 
 function checkEmptyList(event) {
@@ -111,5 +114,15 @@ function checkEmptyList(event) {
 }
 
 $list.addEventListener('click', function (event) {
-
+  var dataObjectIndex = $entriesNodeList.length - 1;
+  if (event.target.matches('i')) {
+    $entriesListView.className = 'view hidden';
+    $newEntriesView.className = 'view';
+    for (var listItemIndex = 0; listItemIndex < $entriesNodeList.length; listItemIndex++) {
+      if (event.target.closest('li') === $entriesNodeList[listItemIndex]) {
+        dataObjectIndex -= listItemIndex;
+        data.editing = data.entries[dataObjectIndex];
+      }
+    }
+  }
 });
