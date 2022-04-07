@@ -128,10 +128,10 @@ $list.addEventListener('click', function (event) {
     var currentEntry = event.target.closest('li').getAttribute('entryid');
     currentEntry = Number.parseInt(currentEntry);
 
-    for (var entriesIndex = 1; entriesIndex < data.entries.length + 1; entriesIndex++) {
-      if (currentEntry === entriesIndex) {
+    for (var entriesIndex = 0; entriesIndex < data.entries.length; entriesIndex++) {
+      if (currentEntry === data.entries[entriesIndex].entryId) {
         $targetedListItem = event.target.closest('li');
-        data.editing = data.entries[entriesIndex - 1];
+        data.editing = data.entries[entriesIndex];
       }
     }
     $title.value = data.editing.title;
