@@ -109,3 +109,7 @@ function checkEmptyList(event) {
     $noEntriesText.className = 'no-entries hidden';
   }
 }
+
+$list.addEventListener('click', function (event) {
+
+});
