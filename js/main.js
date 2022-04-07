@@ -12,6 +12,7 @@ var $newEntriesView = document.querySelectorAll('.view')[0];
 var $entriesListView = document.querySelectorAll('.view')[1];
 var $list = document.querySelector('.list');
 var $noEntriesText = document.querySelector('.no-entries');
+var $targetedListItem = null;
 
 $photo.addEventListener('input', function (event) {
   $imageElement.src = $photo.value;
@@ -22,16 +23,24 @@ $photo.addEventListener('input', function (event) {
 
 $submit.addEventListener('click', function (event) {
   event.preventDefault();
+
   var dataEntry = {
     title: $title.value,
     photo: $photo.value,
-    notes: $notes.value,
-    nextEntryId: data.nextEntryId
+    notes: $notes.value
   };
-  data.nextEntryId++;
-  data.entries.push(dataEntry);
-  $list.prepend(renderEntry(dataEntry));
 
+  if (data.editing !== null) {
+    dataEntry.entryId = data.editing.entryId;
+    data.entries.splice(dataEntry.entryId - 1, 1, dataEntry);
+    $targetedListItem.replaceWith(renderEntry(dataEntry));
+    data.editing = null;
+  } else {
+    dataEntry.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.push(dataEntry);
+    $list.prepend(renderEntry(dataEntry));
+  }
   $imageElement.src = 'images/placeholder-image-square.jpg';
   $form.reset();
 
@@ -50,12 +59,14 @@ function viewSwap(event) {
     } else {
       $entriesListView.className = 'view hidden';
       $newEntriesView.className = 'view';
+      document.querySelector('.title-text').textContent = 'New Entry';
     }
   }
 }
 
 function renderEntry(dataEntry) {
   var $listItem = document.createElement('li');
+  $listItem.setAttribute('entryid', dataEntry.entryId);
   $listItem.className = 'column-full padding-twenty';
 
   var $divRow = document.createElement('div');
@@ -63,7 +74,7 @@ function renderEntry(dataEntry) {
   $listItem.appendChild($divRow);
 
   var $newImage = document.createElement('img');
-  $newImage.className = 'image column-half padding-ten';
+  $newImage.className = 'image column-half padding-twenty';
   $newImage.src = dataEntry.photo;
 
   var $textContainer = document.createElement('div');
@@ -71,6 +82,12 @@ function renderEntry(dataEntry) {
 
   $divRow.appendChild($newImage);
   $divRow.appendChild($textContainer);
+
+  var $titleAndIcon = document.createElement('div');
+  $titleAndIcon.className = 'row position-relative';
+
+  var $editIcon = document.createElement('i');
+  $editIcon.className = 'fas fa-pen fa-lg edit-icon';
 
   var $textTitle = document.createElement('h2');
   $textTitle.className = 'no-margin padding-ten';
@@ -80,7 +97,10 @@ function renderEntry(dataEntry) {
   $textNotes.className = 'no-margin notes-text';
   $textNotes.textContent = dataEntry.notes;
 
-  $textContainer.appendChild($textTitle);
+  $titleAndIcon.appendChild($textTitle);
+  $titleAndIcon.appendChild($editIcon);
+
+  $textContainer.appendChild($titleAndIcon);
   $textContainer.appendChild($textNotes);
   return $listItem;
 }
@@ -100,3 +120,25 @@ function checkEmptyList(event) {
     $noEntriesText.className = 'no-entries hidden';
   }
 }
+
+$list.addEventListener('click', function (event) {
+  if (event.target.matches('i')) {
+    $entriesListView.className = 'view hidden';
+    $newEntriesView.className = 'view';
+    var currentEntry = event.target.closest('li').getAttribute('entryid');
+    currentEntry = Number.parseInt(currentEntry);
+
+    for (var entriesIndex = 0; entriesIndex < data.entries.length; entriesIndex++) {
+      if (currentEntry === data.entries[entriesIndex].entryId) {
+        $targetedListItem = event.target.closest('li');
+        data.editing = data.entries[entriesIndex];
+      }
+    }
+    $title.value = data.editing.title;
+    $photo.value = data.editing.photo;
+    $notes.value = data.editing.notes;
+    $imageElement.src = data.editing.photo;
+
+    document.querySelector('.title-text').textContent = 'Edit Entry';
+  }
+});
