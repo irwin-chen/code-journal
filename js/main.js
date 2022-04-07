@@ -27,7 +27,7 @@ $submit.addEventListener('click', function (event) {
     title: $title.value,
     photo: $photo.value,
     notes: $notes.value,
-    nextEntryId: data.nextEntryId
+    EntryId: data.nextEntryId
   };
   data.nextEntryId++;
   data.entries.push(dataEntry);
@@ -52,6 +52,7 @@ function viewSwap(event) {
     } else {
       $entriesListView.className = 'view hidden';
       $newEntriesView.className = 'view';
+      document.querySelector('.title-text').textContent = 'New Entry';
     }
   }
 }
@@ -115,6 +116,7 @@ function checkEmptyList(event) {
 
 $list.addEventListener('click', function (event) {
   var dataObjectIndex = $entriesNodeList.length - 1;
+  data.editing = null;
   if (event.target.matches('i')) {
     $entriesListView.className = 'view hidden';
     $newEntriesView.className = 'view';
@@ -124,5 +126,11 @@ $list.addEventListener('click', function (event) {
         data.editing = data.entries[dataObjectIndex];
       }
     }
+    $title.value = data.editing.title;
+    $photo.value = data.editing.photo;
+    $notes.value = data.editing.notes;
+    $imageElement.src = data.editing.photo;
+
+    document.querySelector('.title-text').textContent = 'Edit Entry';
   }
 });
