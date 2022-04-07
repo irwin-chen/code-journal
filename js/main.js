@@ -12,7 +12,6 @@ var $newEntriesView = document.querySelectorAll('.view')[0];
 var $entriesListView = document.querySelectorAll('.view')[1];
 var $list = document.querySelector('.list');
 var $noEntriesText = document.querySelector('.no-entries');
-var $entriesNodeList = null;
 var $targetedListItem = null;
 
 $photo.addEventListener('input', function (event) {
@@ -49,7 +48,6 @@ $submit.addEventListener('click', function (event) {
   $newEntriesView.className = 'view hidden';
 
   checkEmptyList();
-  $entriesNodeList = document.querySelectorAll('li');
 });
 
 $divContainer.addEventListener('click', viewSwap);
@@ -68,6 +66,7 @@ function viewSwap(event) {
 
 function renderEntry(dataEntry) {
   var $listItem = document.createElement('li');
+  $listItem.setAttribute('entryid', dataEntry.entryId);
   $listItem.className = 'column-full padding-twenty';
 
   var $divRow = document.createElement('div');
@@ -112,7 +111,6 @@ window.addEventListener('DOMContentLoaded', function (event) {
     $list.prepend(entryTree);
   }
   checkEmptyList();
-  $entriesNodeList = document.querySelectorAll('li');
 });
 
 function checkEmptyList(event) {
@@ -124,15 +122,16 @@ function checkEmptyList(event) {
 }
 
 $list.addEventListener('click', function (event) {
-  var dataObjectIndex = $entriesNodeList.length - 1;
   if (event.target.matches('i')) {
     $entriesListView.className = 'view hidden';
     $newEntriesView.className = 'view';
-    for (var listItemIndex = 0; listItemIndex < $entriesNodeList.length; listItemIndex++) {
-      if (event.target.closest('li').isSameNode($entriesNodeList[listItemIndex])) {
+    var currentEntry = event.target.closest('li').getAttribute('entryid');
+    currentEntry = Number.parseInt(currentEntry);
+
+    for (var entriesIndex = 1; entriesIndex < data.entries.length + 1; entriesIndex++) {
+      if (currentEntry === entriesIndex) {
         $targetedListItem = event.target.closest('li');
-        dataObjectIndex -= listItemIndex;
-        data.editing = data.entries[dataObjectIndex];
+        data.editing = data.entries[entriesIndex - 1];
       }
     }
     $title.value = data.editing.title;
