@@ -17,7 +17,6 @@ var $deleteButton = document.querySelector('.delete-button');
 var $cancelButton = document.querySelector('.cancel-button');
 var $overlay = document.querySelector('.modal-background');
 var $confirmButton = document.querySelector('.confirm-button');
-var currentEntry = null;
 
 $photo.addEventListener('input', function (event) {
   $imageElement.src = $photo.value;
@@ -131,7 +130,7 @@ $list.addEventListener('click', function (event) {
   if (event.target.matches('i')) {
     $entriesListView.className = 'view hidden';
     $newEntriesView.className = 'view';
-    currentEntry = event.target.closest('li').getAttribute('entryid');
+    var currentEntry = event.target.closest('li').getAttribute('entryid');
     currentEntry = Number.parseInt(currentEntry);
 
     for (var entriesIndex = 0; entriesIndex < data.entries.length; entriesIndex++) {
@@ -159,7 +158,7 @@ $cancelButton.addEventListener('click', function (event) {
 
 $confirmButton.addEventListener('click', function (event) {
   for (var entriesIndex = 0; entriesIndex < data.entries.length; entriesIndex++) {
-    if (currentEntry === data.entries[entriesIndex].entryId) {
+    if (data.editing.entryId === data.entries[entriesIndex].entryId) {
       data.entries.splice(entriesIndex, 1);
       $targetedListItem.remove();
     }
