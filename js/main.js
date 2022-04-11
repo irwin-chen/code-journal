@@ -13,6 +13,10 @@ var $entriesListView = document.querySelectorAll('.view')[1];
 var $list = document.querySelector('.list');
 var $noEntriesText = document.querySelector('.no-entries');
 var $targetedListItem = null;
+var $deleteButton = document.querySelector('.delete-button');
+var $cancelButton = document.querySelector('.cancel-button');
+var $overlay = document.querySelector('.modal-background');
+var $confirmButton = document.querySelector('.confirm-button');
 
 $photo.addEventListener('input', function (event) {
   $imageElement.src = $photo.value;
@@ -23,7 +27,6 @@ $photo.addEventListener('input', function (event) {
 
 $submit.addEventListener('click', function (event) {
   event.preventDefault();
-
   var dataEntry = {
     title: $title.value,
     photo: $photo.value,
@@ -56,6 +59,8 @@ function viewSwap(event) {
     if (event.target.matches('a')) {
       $entriesListView.className = 'view';
       $newEntriesView.className = 'view hidden';
+      $form.reset();
+      $imageElement.src = 'images/placeholder-image-square.jpg';
     } else {
       $entriesListView.className = 'view hidden';
       $newEntriesView.className = 'view';
@@ -141,4 +146,29 @@ $list.addEventListener('click', function (event) {
 
     document.querySelector('.title-text').textContent = 'Edit Entry';
   }
+});
+
+$deleteButton.addEventListener('click', function (event) {
+  $overlay.className = 'row align-center modal-background';
+});
+
+$cancelButton.addEventListener('click', function (event) {
+  $overlay.className = 'row align-center modal-background hidden';
+});
+
+$confirmButton.addEventListener('click', function (event) {
+  for (var entriesIndex = 0; entriesIndex < data.entries.length; entriesIndex++) {
+    if (data.editing.entryId === data.entries[entriesIndex].entryId) {
+      data.entries.splice(entriesIndex, 1);
+      $targetedListItem.remove();
+    }
+  }
+
+  $imageElement.src = 'images/placeholder-image-square.jpg';
+  $form.reset();
+
+  $entriesListView.className = 'view';
+  $newEntriesView.className = 'view hidden';
+  $overlay.classList.add('hidden');
+  data.editing = null;
 });
